@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 new_file = open(r"C:\Users\d33914\Documents\blogs_text\text_files\scraped_blog.txt", "w+", encoding="utf-8")
 
 # Change this to read from a specific directory
-d = r'C:\Users\d33914\Documents\blogs_text\avforums_future_mobile\www.avforums.com\threads'
+d = r'C:\Users\d33914\Documents\blogs_text\avforums_steam_outselling_oculus\www.avforums.com\threads'
 
 # class parsePost(HTMLParser):
 #     def handle_data(self, data):
