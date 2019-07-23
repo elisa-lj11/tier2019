@@ -1,27 +1,40 @@
-# modified from https://gist.github.com/bbengfort/efb311aaa1b52814c284d3b21ae752d6
+# created by Benjamin Bengfort, modified by Elisa Lupin-Jimenez
+# modified from bbengfort's keyphrases.py: https://gist.github.com/bbengfort/efb311aaa1b52814c284d3b21ae752d6
 
 import nltk
 import heapq
 import string
 import gensim
 import itertools
+import pdb
 
 from operator import itemgetter
 
 from nltk import *
+#from nltk.corpus import stopwords
 from nltk.corpus.reader.plaintext import PlaintextCorpusReader
 
 # new file with weightings
 new_file = open("keyphrase_weighting.txt", "w+", encoding="utf-8")
+more_stopwords = open("stopwords.txt", "r", encoding="utf-8")
+stop_words = set(nltk.corpus.stopwords.words('english'))
+for line in more_stopwords:
+    stop_words.add(line[:-1])
+    #words = line.split()
+    #for word in words:
+        #stop_words.add(word)
+print(stop_words)
+
 
 # Corpus variables
-CORPUS_TEXT = r'F:\Elisa\text_files'
+CORPUS_TEXT = r'F:\Elisa\text_files\Twitter_to_text'
 texts = PlaintextCorpusReader(CORPUS_TEXT, '.*\.txt')
 
 def extract_candidate_chunks(text, grammar=r'KT: {(<JJ>* <NN.*>+ <IN>)? <JJ>* <NN.*>+}'):
+    #pdb.set_trace()
+    #print(stop_words)
     # exclude candidates that are stop words or entirely punctuation
     punct = set(string.punctuation)
-    stop_words = set(nltk.corpus.stopwords.words('english'))
     # tokenize, POS-tag, and chunk using regular expressions
     chunker = nltk.chunk.regexp.RegexpParser(grammar)
     tagged_sents = nltk.pos_tag_sents(nltk.word_tokenize(sent) for sent in nltk.sent_tokenize(text))
@@ -35,15 +48,14 @@ def extract_candidate_chunks(text, grammar=r'KT: {(<JJ>* <NN.*>+ <IN>)? <JJ>* <N
 
 
 def extract_candidate_words(text, good_tags=set(['JJ','JJR','JJS','NN','NNP','NNS','NNPS'])):
-	# exclude candidates that are stop words or entirely punctuation
-	punct = set(string.punctuation)
-	stop_words = set(nltk.corpus.stopwords.words('english'))
-	# tokenize and POS-tag words
-	tagged_words = itertools.chain.from_iterable(nltk.pos_tag_sents(nltk.word_tokenize(sent)
-		for sent in nltk.sent_tokenize(text)))
-		# filter on certain POS tags and lowercase all words
-	candidates = [word.lower() for word, tag in tagged_words if tag in good_tags and word.lower() not in stop_words and not all(char in punct for char in word)]
-	return candidates
+    # exclude candidates that are stop words or entirely punctuation
+    punct = set(string.punctuation)
+    # tokenize and POS-tag words
+    tagged_words = itertools.chain.from_iterable(nltk.pos_tag_sents(nltk.word_tokenize(sent)
+        for sent in nltk.sent_tokenize(text)))
+        # filter on certain POS tags and lowercase all words
+    candidates = [word.lower() for word, tag in tagged_words if tag in good_tags and word.lower() not in stop_words and not all(char in punct for char in word)]
+    return candidates
 
 
 def score_keyphrases_by_tfidf(texts, candidates='chunks'):
