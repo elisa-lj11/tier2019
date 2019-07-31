@@ -30,7 +30,7 @@ not_regex = re.compile(r'\@[a-zA-Z0-9\-]+')
 
 
 # Change this for source of texts; Corpus variables
-CORPUS_TEXT = r'F:\Elisa\text_files'
+CORPUS_TEXT = r'F:\Elisa\text_files\vr-patent-reports\patent_report_split'
 
 texts = PlaintextCorpusReader(CORPUS_TEXT, '.*\.txt')
 
@@ -58,7 +58,7 @@ def extract_candidate_words(text, good_tags=set(['JJ','JJR','JJS','NN','NNP','NN
     tagged_words = itertools.chain.from_iterable(nltk.pos_tag_sents(nltk.word_tokenize(sent)
         for sent in nltk.sent_tokenize(text)))
         # filter on certain POS tags and lowercase all words
-    candidates = [word.lower() for word, tag in tagged_words if tag in good_tags and word.lower() not in stop_words and regex.match(cand) and not not_regex.match(cand) and not all(char in punct for char in word)]
+    candidates = [word.lower() for word, tag in tagged_words if tag in good_tags and word.lower() not in stop_words and regex.match(word.lower()) and not not_regex.match(word.lower()) and not all(char in punct for char in word)]
     return candidates
 
 
@@ -85,15 +85,15 @@ def score_keyphrases_by_tfidf(texts, candidates='chunks'):
 
 
 if __name__ == '__main__':
-    tfidfs, id2word = score_keyphrases_by_tfidf(texts)
+    tfidfs, id2word = score_keyphrases_by_tfidf(texts)#, 'words')
     fileids = texts.fileids()
 
     # Print top keywords by TF-IDF
     for idx, doc in enumerate(tfidfs):
-        #new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
+        new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
         # Get top 10 terms by TF-IDF score
-        for wid, score in heapq.nlargest(10, doc, key=itemgetter(1)):
-            #new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
-            new_file.write("{}\n".format(id2word[wid]))
+        for wid, score in heapq.nlargest(100, doc, key=itemgetter(1)):
+            new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
+            #new_file.write("{}\n".format(id2word[wid]))
 
-        #new_file.write("\n")
+        new_file.write("\n")

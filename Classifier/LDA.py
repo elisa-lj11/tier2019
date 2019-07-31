@@ -61,7 +61,7 @@ def preprocess(text):
 import os
 text_list = []
 # CHANGE THIS TO CHANGE SOURCE OF TXT FILES
-d = r'F:\Elisa'
+d = r'F:\Elisa\text_files'
 #d = r'C:\Users\d33914\Documents\vr-financial-reports'
 #d = r'F:\reports'
 for path,dirs,files in os.walk(d):
