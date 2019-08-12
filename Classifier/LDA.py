@@ -61,7 +61,7 @@ def preprocess(text):
 import os
 text_list = []
 # CHANGE THIS TO CHANGE SOURCE OF TXT FILES
-d = r'F:\Elisa\text_files'
+d = r'F:\Elisa\text_files\vr-patent-reports\patent_report_split'
 #d = r'C:\Users\d33914\Documents\vr-financial-reports'
 #d = r'F:\reports'
 for path,dirs,files in os.walk(d):
@@ -98,6 +98,6 @@ lda_model = gensim.models.LdaModel(bow_corpus, num_topics=4, id2word=dictionary,
 for idx,t in lda_model.print_topics(-1):
     print('Topic: {} \nWords: {}'.format(idx,t))
 print('\n\n')
-lda_model_tfidf = gensim.models.LdaModel(corpus_tfidf,num_topics=10,id2word=dictionary,passes=2)
+lda_model_tfidf = gensim.models.LdaModel(corpus_tfidf,num_topics=4,id2word=dictionary,passes=2)
 for idx, t in lda_model_tfidf.print_topics(-1):
     print('Topic: {} \nWords: {}'.format(idx,t))
