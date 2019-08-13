@@ -15,9 +15,9 @@ class Analyzer(Frame):
 		self.directory = StringVar()
 		self.keyword_box = None
 		self.doclist = [] #just a doclist, for word2vec.
-		self.stoplist_en = set(self.readFile('english.stop'))
-		self.stoplist_zh = set(self.readFile('stopwords-zh.txt'))
-		self.punc = self.readFile('punctuation.txt')
+		self.stoplist_en = set(self.readFile('../english.stop'))
+		self.stoplist_zh = set(self.readFile('../stopwords-zh.txt'))
+		self.punc = self.readFile('../punctuation.txt')
 		self.lemma = WordNetLemmatizer()
 		self.stemmer = SnowballStemmer('english')
 		self.bigrams = ['hong kong', 'artificial intelligence', 'elon musk', 'xi jinping', 'digital transformation', 'internet of things'] #list of words that should be processed as 1 token

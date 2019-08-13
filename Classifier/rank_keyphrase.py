@@ -90,10 +90,10 @@ if __name__ == '__main__':
 
     # Print top keywords by TF-IDF
     for idx, doc in enumerate(tfidfs):
-        new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
+        #new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
         # Get top 10 terms by TF-IDF score
-        for wid, score in heapq.nlargest(100, doc, key=itemgetter(1)):
-            new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
-            #new_file.write("{}\n".format(id2word[wid]))
+        for wid, score in heapq.nlargest(1, doc, key=itemgetter(1)):
+            #new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
+            new_file.write("{}\n".format(id2word[wid]))
 
-        new_file.write("\n")
+        #new_file.write("\n")
