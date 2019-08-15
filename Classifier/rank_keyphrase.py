@@ -92,7 +92,7 @@ if __name__ == '__main__':
     for idx, doc in enumerate(tfidfs):
         #new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
         # Get top 10 terms by TF-IDF score
-        for wid, score in heapq.nlargest(1, doc, key=itemgetter(1)):
+        for wid, score in heapq.nlargest(50, doc, key=itemgetter(1)):
             #new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
             new_file.write("{}\n".format(id2word[wid]))
 
