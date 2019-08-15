@@ -25,27 +25,29 @@ import gensim.downloader as api
 results = dict()
 new_file = open("co_tech_results.txt", "w+", encoding="utf-8")
 
-terms_list_filename = r'F:\Elisa\tf-idf_results\patent_150k_keyphrases.txt'
+terms_list_filename = r'F:\Elisa\tf-idf_results\patent_4k_keyphrases.txt'
 companies_list_filename = r'F:\Elisa\vr_companies.txt'
 #word2vec_model_source = r"F:\Elisa\GoogleNews-vectors-negative300.bin\GoogleNews-vectors-negative300.bin"
 #word2vec_model_source = r"F:\Elisa\inspect_word2vec-master\vocabulary"
+
 file_dir = r'F:\Elisa\text_files'
+current_file_count = 1
+total_file_count = 0
+for path,dirs,files in os.walk(file_dir):
+    for file in files:
+        if file.endswith(".txt"):
+            total_file_count += 1
 
 # FIXME: make this a dictionary with scores
-# FIXME: cut down on number of terms for now
 terms_list = [line.rstrip('\n') for line in open(terms_list_filename, encoding='utf-8')]
-#for term in terms_list:
-    #print("Reading term: {}\n".format(term))
-#print(terms_list)
 companies_list = [line.rstrip('\n') for line in open(companies_list_filename, encoding='utf-8')]
-#print(companies_list)
 
 for company in companies_list:
     results[company] = set()
 
 for path,dirs,files in os.walk(file_dir):
     for n, file in enumerate(files):
-        print("\rReading docs: " + str(n+1) + "/" + str(len(files)),end=" ")
+        print("\rReading docs: " + str(current_file_count) + "/" + str(total_file_count),end=" ")
         if not file.endswith('.txt'):
             continue
         try:
@@ -72,6 +74,8 @@ for path,dirs,files in os.walk(file_dir):
                             #print("found a company term match!")
                             results[company].add(term)
                             #print("added {} to {} bank".format(term, company))
+        current_file_count += 1
+    
     print('\n',end="")
 
 for key in results:
