@@ -1,4 +1,5 @@
 # Created by Elisa Lupin-Jimenez
+# Program to scrape HTML formatted blog code for text comments and posts
 
 import os
 #from html.parser import HTMLParser
