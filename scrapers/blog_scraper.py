@@ -1,5 +1,6 @@
 # Created by Elisa Lupin-Jimenez
 # Program to scrape HTML formatted blog code for text comments and posts
+# outputs a new text file with just the comments and posts
 
 import os
 #from html.parser import HTMLParser
@@ -8,9 +9,9 @@ from bs4 import BeautifulSoup
 
 # Change this to read data from a specific directory
 source_dir = r'F:\Elisa\text_files\avforums_text_files'
-
-#Change this to write results to a specific directory
+# Change this to write results to a specific directory
 result_dir = r'F:\Elisa\text_files\avforums_text_files_cleaned'
+
 
 def get_text_bs(html):
     tree = BeautifulSoup(html, 'lxml')

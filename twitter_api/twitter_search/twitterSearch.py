@@ -1,8 +1,10 @@
+# Created by Elisa Lupin-Jimenez
 # modified from https://github.com/ckoepp/TwitterSearch
 
 from TwitterSearch import *
 try:
 
+    # CONSTANT: change keywords here to search for different keywords from Twitter
     keywords = [
         "positional audio"
     ]

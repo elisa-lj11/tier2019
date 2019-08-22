@@ -1,5 +1,7 @@
 # created by Benjamin Bengfort, modified by Elisa Lupin-Jimenez
 # modified from bbengfort's keyphrases.py: https://gist.github.com/bbengfort/efb311aaa1b52814c284d3b21ae752d6
+# read from a source of text files to output a text file with ranked phrases for each document
+# based on TF-IDF algorithm: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
 
 import nltk
 import heapq
@@ -8,12 +10,16 @@ import gensim
 import itertools
 #import pdb
 import re
-
 from operator import itemgetter
-
 from nltk import *
 #from nltk.corpus import stopwords
 from nltk.corpus.reader.plaintext import PlaintextCorpusReader
+
+# CONSTANTS
+
+# Change this for source of texts; Corpus variables
+CORPUS_TEXT = r'F:\Elisa\text_files\vr-patent-reports\patent_report_split'
+
 
 # new file with weightings
 new_file = open("keyphrase_weighting.txt", "w+", encoding="utf-8")
@@ -27,10 +33,6 @@ for line in more_stopwords:
 regex = re.compile(r'(?:^|)[a-zA-Z0-9\-]+')
 not_regex = re.compile(r'\@[a-zA-Z0-9\-]+')
 #print(stop_words)
-
-
-# Change this for source of texts; Corpus variables
-CORPUS_TEXT = r'F:\Elisa\text_files\vr-patent-reports\patent_report_split'
 
 texts = PlaintextCorpusReader(CORPUS_TEXT, '.*\.txt')
 
@@ -83,17 +85,17 @@ def score_keyphrases_by_tfidf(texts, candidates='chunks'):
 
     return corpus_tfidf, dictionary
 
-
+# Can change this to output just keywords by commenting out 1st, 2nd, and 4th "new_file.write" lines
 if __name__ == '__main__':
     tfidfs, id2word = score_keyphrases_by_tfidf(texts)#, 'words')
     fileids = texts.fileids()
 
     # Print top keywords by TF-IDF
     for idx, doc in enumerate(tfidfs):
-        #new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
+        new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
         # Get top 10 terms by TF-IDF score
         for wid, score in heapq.nlargest(50, doc, key=itemgetter(1)):
-            #new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
-            new_file.write("{}\n".format(id2word[wid]))
+            new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
+            #new_file.write("{}\n".format(id2word[wid]))
 
-        #new_file.write("\n")
+        new_file.write("\n")

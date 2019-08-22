@@ -22,15 +22,17 @@ import json
 import os
 import gensim.downloader as api
 
-results = dict()
-new_file = open("co_tech_results.txt", "w+", encoding="utf-8")
-
+# CONSTANTS: change these to change source of key terms/phrases, source of company names, and source of company data to search
 terms_list_filename = r'F:\Elisa\tf-idf_results\patent_4k_keyphrases.txt'
 companies_list_filename = r'F:\Elisa\vr_companies.txt'
+file_dir = r'F:\Elisa\text_files'
+new_file = open("co_tech_results.txt", "w+", encoding="utf-8")
 #word2vec_model_source = r"F:\Elisa\GoogleNews-vectors-negative300.bin\GoogleNews-vectors-negative300.bin"
 #word2vec_model_source = r"F:\Elisa\inspect_word2vec-master\vocabulary"
 
-file_dir = r'F:\Elisa\text_files'
+
+results = dict()
+
 current_file_count = 1
 total_file_count = 0
 for path,dirs,files in os.walk(file_dir):

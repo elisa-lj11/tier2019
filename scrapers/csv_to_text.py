@@ -1,7 +1,11 @@
+# Created by Elisa Lupin-Jimenez
+# Takes in a CSV file and converts it into a text file with the columns of interest
+
 import csv
 import string
 import os
 
+# CONSTANTS: to change according to where the CSV file is saved and what rows you want to examine
 excel_file = r"F:\Elisa\text_files\vr-patent-reports\CSV1907171053.csv"
 result_dir = r'F:\Elisa\text_files\vr-patent-reports\patent_report_split'
 included_cols = [1,2,12,30]
