@@ -83,7 +83,7 @@ for path,dirs,files in os.walk(file_dir):
 for key in results:
     new_file.write("{}:\n".format(key))
     for value in results[key]:
-        new_file.write("{} \n".format(value)) 
+        new_file.write("{}\n".format(value)) 
     new_file.write("\n")
 
 #new_file.write(str(results))
