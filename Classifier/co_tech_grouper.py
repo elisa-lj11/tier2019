@@ -26,7 +26,8 @@ import gensim.downloader as api
 terms_list_filename = r'F:\Elisa\tf-idf_results\patent_4k_keyphrases.txt'
 companies_list_filename = r'F:\Elisa\vr_companies.txt'
 file_dir = r'F:\Elisa\text_files'
-new_file = open("co_tech_results.txt", "w+", encoding="utf-8")
+new_file_name = "co_tech_results.txt"
+new_file = open(new_file_name, "w+", encoding="utf-8")
 #word2vec_model_source = r"F:\Elisa\GoogleNews-vectors-negative300.bin\GoogleNews-vectors-negative300.bin"
 #word2vec_model_source = r"F:\Elisa\inspect_word2vec-master\vocabulary"
 
@@ -85,6 +86,8 @@ for key in results:
     for value in results[key]:
         new_file.write("{}\n".format(value)) 
     new_file.write("\n")
+
+print("Done! Look for {} in the 'Classifier' directory".format(new_file_name))
 
 #new_file.write(str(results))
 #new_file.write(json.dumps(results))

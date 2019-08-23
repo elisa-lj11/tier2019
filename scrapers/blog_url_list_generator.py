@@ -1,5 +1,5 @@
 # Created by Elisa Lupin-Jimenez
-# script to quickly create a URL list from an AVForum blog post to input to HTTTracker application
+# script to quickly create a URL list from an AVForum blog post to input to HTTrack application
 
 new_file = open("url_list.txt", "w+", encoding="utf-8")
 

@@ -4,8 +4,8 @@
 
 # CONSTANTS: change these for the key term result list, and the 2 company names you want to compare
 unfiltered_results = r'F:\Elisa\co_tech_results\150k_keyword_list_co_tech_results.txt'
-company_1 = 'Owlchemy Labs'
-company_2 = 'Strivr'
+company_1 = 'Oculus'
+company_2 = 'HTC'
 
 
 new_file_name = company_1 + "-" + company_2 + "_compare_terms.txt"
@@ -27,7 +27,6 @@ for line in unfiltered_results_text:
     elif company_2_listed == line:
         company_selected = 2
     elif line == '\n':
-        print("next company")
         company_selected = 0
 
     if line and company_selected == 1:
@@ -38,4 +37,6 @@ for line in unfiltered_results_text:
 results = company_1_results.intersection(company_2_results)
 
 for value in results:
-    new_file.write("{}".format(value)) 
+    new_file.write("{}".format(value))
+
+print("Done! Look for {} in the 'Classifier' directory".format(new_file_name))

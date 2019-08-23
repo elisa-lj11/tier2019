@@ -16,13 +16,14 @@ from nltk import *
 from nltk.corpus.reader.plaintext import PlaintextCorpusReader
 
 # CONSTANTS
-
-# Change this for source of texts; Corpus variables
+# Change these for source of texts; number of key phrases to print per document; output file
 CORPUS_TEXT = r'F:\Elisa\text_files\vr-patent-reports\patent_report_split'
+keyphrase_num = 50
+new_file_name = "keyphrase_weighting.txt"
 
 
 # new file with weightings
-new_file = open("keyphrase_weighting.txt", "w+", encoding="utf-8")
+new_file = open(new_file_name, "w+", encoding="utf-8")
 more_stopwords = open("stopwords.txt", "r", encoding="utf-8")
 stop_words = set(nltk.corpus.stopwords.words('english'))
 for line in more_stopwords:
@@ -94,8 +95,10 @@ if __name__ == '__main__':
     for idx, doc in enumerate(tfidfs):
         new_file.write("Document '{}' key phrases:\n".format(fileids[idx]))
         # Get top 10 terms by TF-IDF score
-        for wid, score in heapq.nlargest(50, doc, key=itemgetter(1)):
+        for wid, score in heapq.nlargest(keyphrase_num, doc, key=itemgetter(1)):
             new_file.write("{:0.3f}: {}\n".format(score, id2word[wid]))
             #new_file.write("{}\n".format(id2word[wid]))
 
         new_file.write("\n")
+
+print("Done! Look for {} in the 'Classifier' directory".format(new_file_name))
