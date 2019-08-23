@@ -19,20 +19,20 @@ Files added for summer 2019:
 	- To download tweets with specified phrases (need API key)
 
 ORDER OF USE:
-	1. Collect your data (in .txt format)
-		- use blog_scraper.py to get data from forums
-		- use the twitter scripts to get Twitter data (not super useful from my experience)
-		- use csv_to_text.py to convert patent files to txt files for later use
-	2. Run rank_keyphrase.py
-		- collect your .txt files into one directory
-		- will output a new .txt file with the scores of keywords for each document
-	3. Run co_tech_grouper.py
-		- will use your ranked keyphrases (must not include scores in order to work) .txt file
-		- will use a company name .txt file (list of companies you have data for)
-		- will output a new .txt file that lists each company followed by key phrases associated with that company
-	4. Run co_tech_compare.py
-		- input two company names based on the data that you have/want to compare
-		- will use the output of co_tech_grouper.py to produce a list that compares shared key phrases between two companies
+1. Collect your data (in .txt format)
+	- use blog_scraper.py to get data from forums
+	- use the twitter scripts to get Twitter data (not super useful from my experience)
+	- use csv_to_text.py to convert patent files to txt files for later use
+2. Run rank_keyphrase.py
+	- collect your .txt files into one directory
+	- will output a new .txt file with the scores of keywords for each document
+3. Run co_tech_grouper.py
+	- will use your ranked keyphrases (must not include scores in order to work) .txt file
+	- will use a company name .txt file (list of companies you have data for)
+	- will output a new .txt file that lists each company followed by key phrases associated with that company
+4. Run co_tech_compare.py
+	- input two company names based on the data that you have/want to compare
+	- will use the output of co_tech_grouper.py to produce a list that compares shared key phrases between two companies
 
 ------------------------------
 This collection of files was created in summer 2018 for use at 台灣經濟研究院. 
