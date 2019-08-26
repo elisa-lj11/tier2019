@@ -1,4 +1,4 @@
-﻿﻿## New contributions by Elisa Lupin-Jimenez, GitHub @elisa-lj11
+﻿## New contributions by Elisa Lupin-Jimenez, GitHub @elisa-lj11
 
 ### Files added for summer 2019:
 - Classifier/co_tech_compare.py
