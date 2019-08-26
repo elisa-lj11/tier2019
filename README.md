@@ -1,6 +1,6 @@
-﻿New contributions by Elisa Lupin-Jimenez, GitHub @elisa-lj11
+﻿## New contributions by Elisa Lupin-Jimenez, GitHub @elisa-lj11
 
-Files added for summer 2019:
+### Files added for summer 2019:
 - Classifier/co_tech_compare.py
 	- To find common key phrases between companies
 - Classifier/co_tech_grouper.py
@@ -18,7 +18,7 @@ Files added for summer 2019:
 - twitter_api/twitter_search/twitterSearch.py
 	- To download tweets with specified phrases (need API key)
 
-ORDER OF USE:
+### ORDER OF USE:
 1. Collect your data (in .txt format)
 	- use blog_scraper.py to get data from forums
 	- use the twitter scripts to get Twitter data (not super useful from my experience)
